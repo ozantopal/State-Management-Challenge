@@ -9,6 +9,6 @@ namespace OT.StateManagement.Domain.Entities
         public Guid StateId { get; set; }
 
         public virtual State State { get; set; }
-        public ICollection<TaskStateChangeType> StateChanges { get; set; }
+        public ICollection<StateChange> StateChanges { get; set; }
     }
 }
