@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using OT.StateManagement.DataAccess.EF;
+using OT.StateManagement.DataAccess.EF.Repository.Abstracts;
+using OT.StateManagement.DataAccess.EF.Repository.Concretes;
 
 namespace OT.StateManagement.Web.Api
 {
@@ -23,6 +25,8 @@ namespace OT.StateManagement.Web.Api
         {
             services.AddDbContext<StateContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("StateDbConnection")));
+
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
