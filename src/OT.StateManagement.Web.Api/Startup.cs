@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using OT.StateManagement.Business.Service.Abstracts;
+using OT.StateManagement.Business.Service.Concretes;
 using OT.StateManagement.DataAccess.EF;
 using OT.StateManagement.DataAccess.EF.Repository.Abstracts;
 using OT.StateManagement.DataAccess.EF.Repository.Concretes;
@@ -27,6 +29,7 @@ namespace OT.StateManagement.Web.Api
                 options.UseNpgsql(Configuration.GetConnectionString("StateDbConnection")));
 
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IFlowService, FlowService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

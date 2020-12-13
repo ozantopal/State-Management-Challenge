@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OT.StateManagement.DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OT.StateManagement.Web.Api", "src\OT.StateManagement.Web.Api\OT.StateManagement.Web.Api.csproj", "{DC970187-515B-46EB-84DB-ED54D8F0C4D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OT.StateManagement.DataAccess.EF.Repository", "src\OT.StateManagement.DataAccess.EF.Repository\OT.StateManagement.DataAccess.EF.Repository.csproj", "{FBC7FEEB-5263-4202-9B2F-E8E413732210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OT.StateManagement.DataAccess.EF.Repository", "src\OT.StateManagement.DataAccess.EF.Repository\OT.StateManagement.DataAccess.EF.Repository.csproj", "{FBC7FEEB-5263-4202-9B2F-E8E413732210}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OT.StateManagement.Business.Service", "src\OT.StateManagement.Business.Service\OT.StateManagement.Business.Service.csproj", "{65A8B23D-E118-45AC-842A-6FCA8C212B59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{FBC7FEEB-5263-4202-9B2F-E8E413732210}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBC7FEEB-5263-4202-9B2F-E8E413732210}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBC7FEEB-5263-4202-9B2F-E8E413732210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65A8B23D-E118-45AC-842A-6FCA8C212B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65A8B23D-E118-45AC-842A-6FCA8C212B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65A8B23D-E118-45AC-842A-6FCA8C212B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65A8B23D-E118-45AC-842A-6FCA8C212B59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{53DED4C4-2EA5-4839-B63C-3E358E632F6B} = {80B38D46-1541-4643-84A9-6C811D672EC1}
 		{DC970187-515B-46EB-84DB-ED54D8F0C4D0} = {80B38D46-1541-4643-84A9-6C811D672EC1}
 		{FBC7FEEB-5263-4202-9B2F-E8E413732210} = {80B38D46-1541-4643-84A9-6C811D672EC1}
+		{65A8B23D-E118-45AC-842A-6FCA8C212B59} = {80B38D46-1541-4643-84A9-6C811D672EC1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {99CA8BFC-0BB8-4D22-B692-0619BE91251A}
