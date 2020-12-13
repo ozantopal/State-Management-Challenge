@@ -4,4 +4,9 @@
 	  <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OT.StateManagement.DataAccess.EF\OT.StateManagement.DataAccess.EF.csproj" />
+    <ProjectReference Include="..\OT.StateManagement.Domain\OT.StateManagement.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

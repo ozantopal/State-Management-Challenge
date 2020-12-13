@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\OT.StateManagement.DataAccess.EF.Repository\OT.StateManagement.DataAccess.EF.Repository.csproj" />
     <ProjectReference Include="..\OT.StateManagement.DataAccess.EF\OT.StateManagement.DataAccess.EF.csproj" />
   </ItemGroup>
 
