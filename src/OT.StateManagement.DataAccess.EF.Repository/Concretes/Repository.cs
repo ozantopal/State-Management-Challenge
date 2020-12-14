@@ -21,14 +21,7 @@ namespace OT.StateManagement.DataAccess.EF.Repository.Concretes
                 .AsQueryable();
         }
 
-        public IQueryable<T> Get(Expression<Func<T, bool>> predicate)
-        {
-            return Context.Set<T>()
-                .Where(predicate)
-                .AsQueryable();
-        }
-
-        public IQueryable<T> Get(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+        public IQueryable<T> Get(params Expression<Func<T, object>>[] includes)
         {
             var query = Context.Set<T>()
                 .AsQueryable();
@@ -38,7 +31,7 @@ namespace OT.StateManagement.DataAccess.EF.Repository.Concretes
                 query = query.Include(include);
             }
 
-            return query.Where(predicate);
+            return query;
         }
 
         public void Add(T entity)

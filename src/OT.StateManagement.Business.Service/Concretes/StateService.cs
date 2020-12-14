@@ -17,7 +17,8 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public StateDto Get(Guid id)
         {
-            return _repository.Get(x => x.Id == id)
+            return _repository.Get()
+                .Where(x => x.Id == id)
                 .Select(x => new StateDto
                 {
                     Id = x.Id,
@@ -46,7 +47,7 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public bool Update(Guid id, StateDto entity)
         {
-            var state = _repository.Get(x => x.Id == id).FirstOrDefault();
+            var state = _repository.Get().FirstOrDefault(x => x.Id == id);
             if (state == null)
             {
                 return false;
@@ -65,7 +66,7 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public bool Delete(Guid id)
         {
-            var state = _repository.Get(x => x.Id == id).FirstOrDefault();
+            var state = _repository.Get().FirstOrDefault(x => x.Id == id);
             if (state == null)
             {
                 return false;
@@ -118,7 +119,7 @@ namespace OT.StateManagement.Business.Service.Concretes
         {
             if (state.PreviousStateId.HasValue)
             {
-                var prevState = _repository.Get(x => x.Id == state.PreviousStateId.Value).FirstOrDefault();
+                var prevState = _repository.Get().FirstOrDefault(x => x.Id == state.PreviousStateId.Value);
                 if (prevState != null)
                 {
                     prevState.NextStateId = state.NextStateId;
@@ -128,7 +129,7 @@ namespace OT.StateManagement.Business.Service.Concretes
 
             if (state.NextStateId.HasValue)
             {
-                var nextState = _repository.Get(x => x.Id == state.NextStateId.Value).FirstOrDefault();
+                var nextState = _repository.Get().FirstOrDefault(x => x.Id == state.NextStateId.Value);
                 if (nextState != null)
                 {
                     nextState.PreviousStateId = state.PreviousStateId;

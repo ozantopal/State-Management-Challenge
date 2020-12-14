@@ -17,7 +17,8 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public FlowDto Get(Guid id)
         {
-            return _repository.Get(x => x.Id == id)
+            return _repository.Get()
+                .Where(x => x.Id == id)
                 .Select(x => new FlowDto
                 {
                     Id = x.Id,
@@ -39,7 +40,7 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public bool Update(Guid id, FlowDto entity)
         {
-            var flow = _repository.Get(x => x.Id == id).FirstOrDefault();
+            var flow = _repository.Get().FirstOrDefault(x => x.Id == id);
             if (flow == null)
             {
                 return false;
@@ -53,7 +54,7 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public bool Delete(Guid id)
         {
-            var flow = _repository.Get(x => x.Id == id).FirstOrDefault();
+            var flow = _repository.Get().FirstOrDefault(x => x.Id == id);
             if (flow == null)
             {
                 return false;

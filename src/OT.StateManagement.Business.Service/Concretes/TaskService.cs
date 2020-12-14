@@ -21,7 +21,8 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public TaskDto Get(Guid id)
         {
-            return _repository.Get(x => x.Id == id)
+            return _repository.Get()
+                .Where(x => x.Id == id)
                 .Select(x => new TaskDto
                 {
                     Id = x.Id,
@@ -40,7 +41,7 @@ namespace OT.StateManagement.Business.Service.Concretes
                 StateId = entity.StateId,
                 StateChanges = new List<StateChange>
                 {
-                    new StateChange{Id = Guid.NewGuid(), TaskId = entity.Id, TypeOfChange = TaskStateChangeType.Forward}
+                    new StateChange{ Id = Guid.NewGuid(), TaskId = entity.Id, TypeOfChange = TaskStateChangeType.Forward }
                 }
             });
 
@@ -49,7 +50,7 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public bool Update(Guid id, TaskDto entity)
         {
-            var task = _repository.Get(x => x.Id == id).FirstOrDefault();
+            var task = _repository.Get().FirstOrDefault(x => x.Id == id);
             if (task == null)
             {
                 return false;
@@ -63,7 +64,7 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public bool AsignNewState(Guid id, TaskStateChangeType changeType)
         {
-            var task = _repository.Get(x => x.Id == id, x => x.State, x => x.StateChanges).FirstOrDefault();
+            var task = _repository.Get(x => x.State, x => x.StateChanges).FirstOrDefault(x => x.Id == id);
             if (task == null)
             {
                 return false;
@@ -112,7 +113,7 @@ namespace OT.StateManagement.Business.Service.Concretes
 
         public bool Delete(Guid id)
         {
-            var task = _repository.Get(x => x.Id == id).FirstOrDefault();
+            var task = _repository.Get().FirstOrDefault(x => x.Id == id);
             if (task == null)
             {
                 return false;
