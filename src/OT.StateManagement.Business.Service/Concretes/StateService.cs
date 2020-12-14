@@ -71,8 +71,8 @@ namespace OT.StateManagement.Business.Service.Concretes
                 return false;
             }
 
-            _repository.Delete(state);
             UpdateRelationalStatesWithExState(state);
+            _repository.Delete(state);
 
             return true;
         }
@@ -88,6 +88,10 @@ namespace OT.StateManagement.Business.Service.Concretes
             else
             {
                 var formerPrevState = _repository.Get(x => x.NextStateId == state.Id).FirstOrDefault();
+                if (formerPrevState == null)
+                {
+                    return;
+                }
                 formerPrevState.NextStateId = null;
                 _repository.Update(formerPrevState);
             }
@@ -101,6 +105,10 @@ namespace OT.StateManagement.Business.Service.Concretes
             else
             {
                 var formerNextState = _repository.Get(x => x.PreviousStateId == state.Id).FirstOrDefault();
+                if (formerNextState == null)
+                {
+                    return;
+                }
                 formerNextState.PreviousStateId = null;
                 _repository.Update(formerNextState);
             }
@@ -111,15 +119,21 @@ namespace OT.StateManagement.Business.Service.Concretes
             if (state.PreviousStateId.HasValue)
             {
                 var prevState = _repository.Get(x => x.Id == state.PreviousStateId.Value).FirstOrDefault();
-                prevState.NextStateId = state.NextStateId;
-                _repository.Update(prevState);
+                if (prevState != null)
+                {
+                    prevState.NextStateId = state.NextStateId;
+                    _repository.Update(prevState);
+                }
             }
 
             if (state.NextStateId.HasValue)
             {
                 var nextState = _repository.Get(x => x.Id == state.NextStateId.Value).FirstOrDefault();
-                nextState.PreviousStateId = state.NextStateId;
-                _repository.Update(nextState);
+                if (nextState != null)
+                {
+                    nextState.PreviousStateId = state.PreviousStateId;
+                    _repository.Update(nextState);
+                }
             }
         }
     }
