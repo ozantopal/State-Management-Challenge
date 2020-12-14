@@ -30,6 +30,7 @@ namespace OT.StateManagement.Web.Api
 
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IFlowService, FlowService>();
+            services.AddTransient<IStateService, StateService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
